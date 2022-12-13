@@ -33,7 +33,22 @@ const App = () => {
 
       // ACTION ITEM: your Pig Latin logic goes here!
 
-    
+    // Pseudocode:
+    // create a function that checks if the first index of a string within an array is a vowel
+    // use .charAt() to pinpoint the 0th index
+    // use .match() to check if the 0th index is a vowel
+    // input: array of string(s)
+    // output: new array of strings with "way" added to the end
+
+      // let arrayOfVowels = ["a", "e", "i", "o", "u"]
+      const firstVowel = arrayOfUserInput.map(value => {
+        if (value.charAt(0).match(/[a,e,i,o,u]/)) {
+          return value + "way"
+        } else {
+          return value
+        }
+      })
+      console.log("firstVowel:", firstVowel)
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
       return eachWord
