@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import './App.css'
 import butcherPigImage from './assets/butcherPig.jpeg'
@@ -5,7 +6,7 @@ import butcherPigImage from './assets/butcherPig.jpeg'
 const App = () => {
 
   // ACTION ITEM: to make the development process easier there are some preassigned words in the input field, when you are ready for your full user experience delete the test words passed to useState and pass an empty string
-  const [userInput, setUserInput] = useState("apple through queen squeal fry fluent")
+  const [userInput, setUserInput] = useState("")
   const [inputTranslated, setInputTranslated] = useState("")
 
   // ACTION ITEM: the "myPigLatinCodeHere" function is where you will put your logic to translate the sentence entered by the user into Pig Latin
@@ -56,26 +57,33 @@ const App = () => {
     // input: array of strings
     // output: new array of strings with "y" as the first letter, followed the sliced letters, followed by "ay"
 
+    // Pseudocode for consonant functionality
+    // Create a function that looks for the first vowel in a string after consanants
+    // use .search to locate first vowel after consonant(s)
+    // use .slice to remove the beginning consanant(s)
+    // use value.length to account for any length string
+    // input: array of strings
+    // output: new array of strings with the vowel as the first letter, the leading consonants added after the array.length, and "ay" added to the end
     
+    if (eachWord.charAt(0).match(/[a,e,i,o,u]/)) {
+      return eachWord + "way"
+    } else if (eachWord.charAt(0).match(/[q]/) && eachWord.charAt(1).match(/[u]/)) {
+      return eachWord.slice(2, (eachWord.length)) + "quay"
+    } else if (eachWord.charAt(1).match(/[q]/) && eachWord.charAt(2).match(/[u]/)) {
+      return eachWord.slice(3, (eachWord.length)) + "squay"
+    } else if (eachWord.charAt(1).match(/[y]/)) {
+      return eachWord.slice(1, eachWord.length) + eachWord.slice(0, 1) + "ay"
+    } else if (eachWord.charAt(2).match(/[y]/)) {
+      return eachWord.slice(2, eachWord.length) + eachWord.slice(0, 2) + "ay"
+    } else if (eachWord.search(/[a, e, i, o, u]/)) {
+      return eachWord.slice((eachWord.search(/[a, e, i, o, u]/g)), (eachWord.length)) + eachWord.slice(0, eachWord.search(/[a, e, i, o, u]/g)) + "ay"
+  }
     
-    
-      const firstVowel = arrayOfUserInput.map(value => {
-        if (value.charAt(0).match(/[a,e,i,o,u]/)) {
-          return value + "way"
-        } else if (value.charAt(0).match(/[q]/) && value.charAt(1).match(/[u]/)) {
-          return value.slice(2, (value.length)) + "quay"
-        } else if (value.charAt(1).match(/[q]/) && value.charAt(2).match(/[u]/)) {
-          return value.slice(3, (value.length)) + "squay"
-        } else if (value.charAt(1).match(/[y]/)) {
-          return value.slice(1, value.length) + value.slice(0, 1) + "ay"
-        } else if (value.charAt(2).match(/[y]/)) {
-          return value.slice(2, value.length) + value.slice(0, 2) + "ay"
-        }
-      })
-      console.log("firstVowel:", firstVowel)
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
-      return eachWord
+      
+        return eachWord
+      
     })
 
     // NO MODIFICATION NEEDED: once the code has been modified it gets joined from an array back to a string
@@ -88,7 +96,7 @@ const App = () => {
 
   // ACTION ITEM: this method restarts the game by setting the original state, when you are ready for your full user experience delete the test words in setUserInput and pass an empty string
   const restartGame = () => {
-    setUserInput("apple through queen squeal fry fluent")
+    setUserInput("")
     setInputTranslated("")
   }
 
@@ -127,7 +135,7 @@ const App = () => {
         </div>
         <p>{inputTranslated}</p>
       </div>
-      <footer>&copy; 2022 | Coded by: Your Names Here!</footer>
+      <footer>&copy; 2022 | Coded by: Moss Cantrell, Sammy Torres, and Fred McBurnett</footer>
     </div>
   )
 }
