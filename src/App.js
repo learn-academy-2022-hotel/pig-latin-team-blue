@@ -48,7 +48,17 @@ const App = () => {
     // input: array of string(s)
     // output: new array of strings that end with either "quay" or "squay" depending on how they begin 
 
-      // let arrayOfVowels = ["a", "e", "i", "o", "u"]
+    // Pseudocode for Y
+    // create a function that looks for "y" in a string
+    // use .chatAt() to specifiy whether "y" is at index value 1 or index value 2
+    // use .slice() to only log the string after the "y"
+    // use value.length to account for any length string
+    // input: array of strings
+    // output: new array of strings with "y" as the first letter, followed the sliced letters, followed by "ay"
+
+    
+    
+    
       const firstVowel = arrayOfUserInput.map(value => {
         if (value.charAt(0).match(/[a,e,i,o,u]/)) {
           return value + "way"
@@ -56,6 +66,10 @@ const App = () => {
           return value.slice(2, (value.length)) + "quay"
         } else if (value.charAt(1).match(/[q]/) && value.charAt(2).match(/[u]/)) {
           return value.slice(3, (value.length)) + "squay"
+        } else if (value.charAt(1).match(/[y]/)) {
+          return value.slice(1, value.length) + value.slice(0, 1) + "ay"
+        } else if (value.charAt(2).match(/[y]/)) {
+          return value.slice(2, value.length) + value.slice(0, 2) + "ay"
         }
       })
       console.log("firstVowel:", firstVowel)
