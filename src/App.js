@@ -33,19 +33,29 @@ const App = () => {
 
       // ACTION ITEM: your Pig Latin logic goes here!
 
-    // Pseudocode:
+    // Pseudocode for Vowels:
     // create a function that checks if the first index of a string within an array is a vowel
     // use .charAt() to pinpoint the 0th index
     // use .match() to check if the 0th index is a vowel
     // input: array of string(s)
     // output: new array of strings with "way" added to the end
 
+    //Pseudocode for QU:
+    // create a function that checks for "qu" within a string
+    // use .charAt() to specify whether the "qu" is at index 0 and 1, or 1 and 2
+    // use .slice() to only log the string after "qu"
+    // use value.length to account for any length of string
+    // input: array of string(s)
+    // output: new array of strings that end with either "quay" or "squay" depending on how they begin 
+
       // let arrayOfVowels = ["a", "e", "i", "o", "u"]
       const firstVowel = arrayOfUserInput.map(value => {
         if (value.charAt(0).match(/[a,e,i,o,u]/)) {
           return value + "way"
-        } else {
-          return value
+        } else if (value.charAt(0).match(/[q]/) && value.charAt(1).match(/[u]/)) {
+          return value.slice(2, (value.length)) + "quay"
+        } else if (value.charAt(1).match(/[q]/) && value.charAt(2).match(/[u]/)) {
+          return value.slice(3, (value.length)) + "squay"
         }
       })
       console.log("firstVowel:", firstVowel)
